@@ -14,6 +14,7 @@
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Example projects](#example-projects)
+[Credits](#credits)
 
 ## Overview
 
@@ -28,3 +29,7 @@ A collection of pre-commit hooks.
 ## Example projects
 
 *Here will be a list of examples!*
+
+## Credits
+
+- [Kiwi.com](https://github.com/kiwicom/dockerfiles)
