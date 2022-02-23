@@ -11,4 +11,5 @@
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
   entry: --entrypoint isort testthedocs/isort:5.7.0
+  args: ["--profile", "black", "--filter-files"]
   types: [python]
