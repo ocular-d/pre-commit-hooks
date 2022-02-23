@@ -26,9 +26,22 @@ A collection of pre-commit hooks.
 
 ## Usage
 
+Example `.pre-commit-config.yaml`
+
+```yaml
+repos:
+- repo: https://github.com/ocular-d/pre-commit-hooks.git
+  rev: 0.0.2
+  hooks:
+    - id: python-black
+    - id: python-isort
+```
+
+Check the official `pre-commit` [docs](https://pre-commit.com/) for detailed documentation.
+
 ## Example projects
 
-*Here will be a list of examples!*
+- [Example Python](https://github.com/testthedocs/example-python)
 
 ## Credits
 
