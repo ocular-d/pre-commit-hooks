@@ -3,7 +3,7 @@
 - Base image: `python:3.8-alpine`
 - Packages: [`black`](https://github.com/psf/black/)
 
-Image used to format python code using [`pre-commit`](https://pre-commit.com) hooks and to check if all the files are correctly formatted on CI.
+Image used to format Python code using [`pre-commit`](https://pre-commit.com) hooks and to check if all the files are correctly formatted on CI.
 
 `pre-commit` hook example:
 

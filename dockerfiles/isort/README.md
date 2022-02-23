@@ -3,7 +3,7 @@
 - Base image: `python:3.9-alpine`
 - Packages: [`isort`](https://github.com/timothycrosley/isort/)
 
-Image used to format python code using [`pre-commit`](https://pre-commit.com) hooks and to check if all the imports are correctly sorted on CI.
+Image used to format Python code using [`pre-commit`](https://pre-commit.com) hooks and to check if all the imports are correctly sorted on CI.
 
 `pre-commit` hook example:
 
