@@ -14,7 +14,7 @@
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Example projects](#example-projects)
-[Credits](#credits)
+- [Credits](#credits)
 
 ## Overview
 
