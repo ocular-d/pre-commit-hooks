@@ -13,10 +13,10 @@ Image used to format Python code using [`pre-commit`](https://pre-commit.com) ho
     - id: black
       name: black-code-formatter
       language: docker_image
-      entry: --entrypoint black testthedocs/black:$VERSION
+      entry: --entrypoint black testthedocs/black:22.1.0
       types: [python]
 ```
 
 CLI usage example:
 
-`docker run -ti -v "$(pwd)":/src -v "$(pwd)/.blackcache":/home/black/.cache --workdir=/src testthedocs/black:$VERSION black .`
+`docker run -ti -v "$(pwd)":/src -v "$(pwd)/.blackcache":/home/black/.cache --workdir=/src testthedocs/black:22.1.0 black .`
