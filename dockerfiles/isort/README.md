@@ -19,4 +19,4 @@ Image used to format Python code using [`pre-commit`](https://pre-commit.com) ho
 
 CLI usage example:
 
-`docker run -ti -v "$(pwd)":/src --workdir=/src testthedocs/isort:$VERSION isort **/*.py`
+`docker run -ti -v "$(pwd)":/src --workdir=/src testthedocs/isort:5.7.0 isort **/*.py`
