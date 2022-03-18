@@ -8,12 +8,19 @@ LABEL name=vale version=${VALE_VERSION}
 #RUN apk update && apk add --no-cache wget zip tar
 WORKDIR /
 
-RUN apk add --no-cache py3-docutils && \
+RUN apk add --no-cache py3-docutils bash && \
     addgroup -S vale && adduser -D -S vale vale && \
     wget https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz && \
     tar -xvzf vale_${VALE_VERSION}_Linux_64-bit.tar.gz && \
     cp vale /usr/local/bin/vale && \
     rm README.md && rm LICENSE
 
+#RUN mkdir /src && \
+#    chown vale:vale /src
 
-CMD [ "/usr/local/bin/vale" ]
+WORKDIR /src/docs
+COPY --chown=vale:vale vale.ini /src/.vale.ini
+COPY --chown=vale:vale styles /src/styles
+USER vale
+ENTRYPOINT [ "/usr/local/bin/vale" ]
+#ENTRYPOINT [ "bash" ]
