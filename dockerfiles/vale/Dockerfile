@@ -1,5 +1,5 @@
 FROM alpine:3.15.1
-ENV VALE_VERSION=2.15.3
+ENV VALE_VERSION=2.15.5
 
 LABEL description="Vale linter"
 LABEL maintainer="sven@testthedocs.org"
@@ -26,5 +26,5 @@ COPY styles /styles
 #COPY --chown=vale:vale vale.ini /src/.vale.ini
 #COPY --chown=vale:vale styles /src/styles
 USER vale
-#ENTRYPOINT [ "/usr/local/bin/vale" ]
+ENTRYPOINT [ "/usr/local/bin/vale" ]
 #CMD [ "bash", "ls" ]
