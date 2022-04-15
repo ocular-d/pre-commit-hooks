@@ -31,10 +31,11 @@ Example `.pre-commit-config.yaml`
 ```yaml
 repos:
 - repo: https://github.com/ocular-d/pre-commit-hooks.git
-  rev: 0.0.3
+  rev: 0.0.4
   hooks:
     - id: python-black
     - id: python-isort
+    - id: vale
 ```
 
 Check the official `pre-commit` [docs](https://pre-commit.com/) for detailed documentation.
