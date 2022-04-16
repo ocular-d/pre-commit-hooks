@@ -20,6 +20,13 @@
 
 A collection of pre-commit hooks.
 
+| Check  | Description  | ID |
+|---|---|---|
+| Python Black  | Python code formatter  | python-black  |
+| Python Isort  |  sort Python imports | python-isort  |
+| Vale  | Prose linter  | vale  |
+| Markdown lint | Markdown linter | markdown-lint |
+
 ## Requirements
 
 - [pre-commit](https://pre-commit.com/)
