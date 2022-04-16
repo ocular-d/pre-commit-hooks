@@ -36,7 +36,7 @@ repos:
     - id: python-black
     - id: python-isort
     - id: vale
-    - id: markdownlint
+    - id: markdown-lint
 ```
 
 Check the official `pre-commit` [docs](https://pre-commit.com/) for detailed documentation.
