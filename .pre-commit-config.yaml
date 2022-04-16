@@ -14,3 +14,14 @@ repos:
       - id: detect-secrets
         name: Detect secrets
         description: Check repo for secrets
+
+-   repo: local
+    hooks:
+      - id: vale-docker
+        name: Vale
+        description: Runs vale Docker image to lint markdown
+        language: docker_image
+        files: \.md$
+        #types: ["markdown"]
+        entry: vtest:latest vale
+        #entry: --entrypoint /usr/local/bin/vale vtest:latest .

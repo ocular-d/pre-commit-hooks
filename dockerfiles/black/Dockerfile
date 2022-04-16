@@ -1,5 +1,5 @@
 FROM python:3.9-alpine
-ENV version=22.1.0
+ENV version=22.3.0
 
 LABEL description="Black Python code formater"
 LABEL maintainer="sven@testthedocs.org"
