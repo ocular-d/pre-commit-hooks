@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 <div align="center">
 
 # pre-commit hooks
@@ -7,6 +8,7 @@
 [Documentation](#documentation)
 
 </div>
+<!-- markdownlint-enable -->
 
 ## Table of contents
 
@@ -18,6 +20,8 @@
 
 ## Overview
 
+<!-- vale off -->
+
 A collection of pre-commit hooks.
 
 | Check  | Description  | ID |
@@ -26,7 +30,9 @@ A collection of pre-commit hooks.
 | Python Isort  |  sort Python imports | python-isort  |
 | Vale  | Prose linter  | vale  |
 | Markdown lint | Markdown linter | markdown-lint |
+| ShellCheck | Static analysis tool for shell scripts |
 
+<!-- vale on -->
 ## Requirements
 
 - [pre-commit](https://pre-commit.com/)
@@ -38,12 +44,13 @@ Example `.pre-commit-config.yaml`
 ```yaml
 repos:
 - repo: https://github.com/ocular-d/pre-commit-hooks.git
-  rev: 0.0.6
+  rev: 0.0.8
   hooks:
     - id: python-black
     - id: python-isort
     - id: vale
     - id: markdown-lint
+    - id: shellcheck
 ```
 
 Check the official `pre-commit` [docs](https://pre-commit.com/) for detailed documentation.

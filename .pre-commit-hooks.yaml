@@ -27,3 +27,9 @@
   language: docker_image
   entry: testthedocs/markdownlint:0.31.1
   types: [markdown]
+- id: shellcheck
+  name: ShellCheck
+  description: Static analysis tool for shell scripts
+  language: docker_image
+  entry: testthedocs/shellcheck:0.8.0
+  types: [shell]
