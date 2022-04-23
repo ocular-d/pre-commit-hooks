@@ -13,3 +13,17 @@
   entry: --entrypoint isort testthedocs/isort:5.7.0
   args: ["--profile", "black", "--filter-files"]
   types: [python]
+- id: vale
+  name: vale
+  description: "Vale prose linter"
+  minimum_pre_commit_version: '2.17.0'
+  language: docker_image
+  entry: testthedocs/vale:2.15.5
+  types: [markdown]
+- id: markdown-lint
+  name: markdown-lint
+  description: "Markdown Lint"
+  minimum_pre_commit_version: '2.17.0'
+  language: docker_image
+  entry: testthedocs/markdownlint:0.31.1
+  types: [markdown]
