@@ -12,7 +12,10 @@ RUN mkdir -p /app \
     && npm cache clean --force
 
 USER node
+#COPY cspell.json /cspell.json
 WORKDIR /app
+COPY cspell.json cspell.json
 
+WORKDIR /app/spec
 #ENTRYPOINT [ "bash" ]
 ENTRYPOINT [ "cspell" ]
