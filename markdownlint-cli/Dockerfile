@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.15
+FROM node:lts-alpine3.16
 ENV APP_VERSION=0.31.1
 
 LABEL description="Command Line Interface for Markdown Lint"

@@ -1,5 +1,5 @@
-FROM alpine:3.15.1
-ENV VALE_VERSION=2.15.5
+FROM alpine:3.16
+ENV VALE_VERSION=2.20.0
 
 LABEL description="Vale linter"
 LABEL maintainer="sven@testthedocs.org"
