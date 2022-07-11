@@ -3,7 +3,7 @@ components:
     ClientLoginResponse:
       properties:
         access_token:
-          title: Access Token
+          title: Access Tokken
           type: string
         expires_in:
           default: 0
