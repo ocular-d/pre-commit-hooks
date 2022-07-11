@@ -44,4 +44,4 @@ repos:
         language: docker_image
         files: openapi.*\.yaml$
         types: [file]
-        entry: testthedocs/testthedocs/cpsell:6.2.3
+        entry: testthedocs/cspell:6.2.3-1
