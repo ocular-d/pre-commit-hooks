@@ -1,0 +1,3005 @@
+components:
+  schemas:
+    ClientLoginResponse:
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+        expires_in:
+          default: 0
+          title: Expires In
+          type: integer
+        token_type:
+          title: Token Type
+          type: string
+      required:
+      - access_token
+      - token_type
+      title: ClientLoginResponse
+      type: object
+    CreateAttachmentResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        name:
+          title: Name
+          type: string
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        parent_id:
+          title: Parent Id
+          type: string
+        title:
+          title: Title
+          type: string
+      required:
+      - parent_id
+      - title
+      title: CreateAttachmentResourceAttributesObject
+      type: object
+    CreateConversationResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        name:
+          title: Name
+          type: string
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        parent_id:
+          title: Parent Id
+          type: string
+        thread_id:
+          title: Thread Id
+          type: string
+        thread_name:
+          title: Thread Name
+          type: string
+        thread_type:
+          title: Thread Type
+          type: string
+        title:
+          title: Title
+          type: string
+      required:
+      - parent_id
+      - title
+      title: CreateConversationResourceAttributesObject
+      type: object
+    CreateFolderRequestBody:
+      additionalProperties: false
+      example:
+        name: Foobar
+        parent_id: baz-1234
+      properties:
+        name:
+          description: Display name of the Folder.
+          title: Name
+          type: string
+        parent_id:
+          description: The ID of the parent Workspace or Folder.
+          title: Parent ID
+          type: string
+      required:
+      - name
+      - parent_id
+      title: CreateFolderRequestBody
+      type: object
+    CreateMessageResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        author:
+          $ref: '#/components/schemas/MessageAuthor'
+        date:
+          title: Date
+          type: string
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        parent_id:
+          title: Parent Id
+          type: string
+        parent_message_id:
+          title: Parent Message Id
+          type: string
+        text:
+          title: Text
+          type: string
+        title:
+          title: Title
+          type: string
+      required:
+      - author
+      - date
+      - parent_id
+      - text
+      - title
+      title: CreateMessageResourceAttributesObject
+      type: object
+    CreateResourceRequestBody:
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateResourceResourceObject'
+      required:
+      - data
+      title: CreateResourceRequestBody
+      type: object
+    CreateResourceResourceObject:
+      properties:
+        attributes:
+          anyOf:
+          - $ref: '#/components/schemas/CreateAttachmentResourceAttributesObject'
+          - $ref: '#/components/schemas/CreateConversationResourceAttributesObject'
+          - $ref: '#/components/schemas/CreateMessageResourceAttributesObject'
+          title: Attributes
+        type:
+          description: 'Resource type: must be one of `attachment`, `conversation`,
+            or `message`.'
+          enum:
+          - attachment
+          - conversation
+          - message
+          title: Resource type
+          type: string
+      required:
+      - attributes
+      - type
+      title: CreateResourceResourceObject
+      type: object
+    CreateTicketBody:
+      additionalProperties: false
+      example:
+        name: CS0001401
+        onna_parent_id: da72de92fef04c6a9cc5cfe018fa9cd6
+        ref: f352dc9387632300d6b0a7da0acb0b60
+        url: https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60
+      properties:
+        assignee_group:
+          descripton: Asignee group.
+          title: Assignee Group
+          type: string
+        assignees:
+          description: List of users assigned to the ticket.
+          items:
+            type: string
+          title: Assignees
+          type: array
+        author:
+          description: The user that created the ticket.
+          title: Author
+          type: string
+        category:
+          description: Category.
+          title: Category
+          type: string
+        comments:
+          description: List of messages associated to the ticket.
+          items:
+            $ref: '#/components/schemas/TicketMessages'
+          title: Comments
+          type: array
+        creation_date:
+          description: Date when the ticket was created.
+          title: Creation Date
+          type: string
+        description:
+          description: Description.
+          title: Description
+          type: string
+        followers:
+          descripton: List of users follwing the ticket.
+          items:
+            type: string
+          title: Followers
+          type: array
+        name:
+          description: Title.
+          title: Name
+          type: string
+        onna_parent_id:
+          description: The ID of the parent Folder.
+          title: Parent ID
+          type: string
+        priority:
+          description: 'Priority: high, medium, low, etc.'
+          title: Priority
+          type: string
+        reactions:
+          descripton: List of reactions.
+          items:
+            type: string
+          title: Reactions
+          type: array
+        ref:
+          description: The Reference Number or ID for the ticket at the origin.
+          title: Reference
+          type: string
+        requester:
+          description: The user that requested the ticket.
+          title: Requester
+          type: string
+        severity:
+          description: 'Severity: high, medium, low, etc.'
+          title: Severity
+          type: string
+        status:
+          description: 'Ticket status: open, closed, archived, etc.'
+          title: Status
+          type: string
+        subcategory:
+          description: Subcategory.
+          title: Subcategory
+          type: string
+        tags:
+          descripton: List of tags associated to the ticket in the origin.
+          items:
+            type: string
+          title: Tags
+          type: array
+        type:
+          description: Type of ticket.
+          title: Type
+          type: string
+        update_date:
+          description: Date when the ticket was last updated.
+          title: Update Date
+          type: string
+        updater:
+          description: The last user to update the ticket.
+          title: Updater
+          type: string
+        url:
+          description: A Unique Resource Locator for the ticket at the origin.
+          title: URL
+          type: string
+      required:
+      - onna_parent_id
+      - ref
+      - url
+      - name
+      title: CreateTicketBody
+      type: object
+    CreateTicketResponse:
+      additionalProperties: false
+      properties:
+        onna_id:
+          description: The ID for the Onna resource.
+          title: Onna Id
+          type: string
+        onna_url:
+          description: The URL for the Onna resource.
+          title: Onna Url
+          type: string
+      required:
+      - onna_id
+      - onna_url
+      title: CreateTicketResponse
+      type: object
+    CreateWorkspaceRequestBody:
+      additionalProperties: false
+      example:
+        description: A collection of Acmecorp Inc. support tickets from different
+          apps.
+        name: Acmecorp support tickets
+        tags:
+        - support
+        - zendesk
+        - acemcorp
+        - tickets
+      properties:
+        description:
+          description: Short description of the workspace.
+          title: Description
+          type: string
+        name:
+          description: Display name of the workspace.
+          title: Name
+          type: string
+        tags:
+          description: Labels attached to the workspace for the purpose of identification
+            or to give meta information.
+          items:
+            type: string
+          title: Tags
+          type: array
+      required:
+      - name
+      title: CreateWorkspaceRequestBody
+      type: object
+    CurrentUser:
+      additionalProperties: false
+      properties:
+        account_id:
+          description: The ID of the account to which the user is associated.
+          title: Account ID
+          type: string
+        id:
+          description: Unique identifier of the current user. For most users this
+            will be the same as the email.
+          title: ID
+          type: string
+        name:
+          description: Name of the authenticated user.
+          title: Name
+          type: string
+        surname:
+          description: Surname of the authenticated user.
+          title: Surname
+          type: string
+      required:
+      - id
+      - account_id
+      - name
+      title: CurrentUser
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    HealthResponseBody:
+      additionalProperties: false
+      example:
+        python_version: 3.9.13
+        release_id: 1.0.0
+        service_id: public-api
+        status: pass
+        version: v1
+      properties:
+        python_version:
+          description: Python version.
+          title: Python Version
+          type: string
+        release_id:
+          description: Service version.
+          title: Release Id
+          type: string
+        service_id:
+          description: Unique ID for the service.
+          title: Service Id
+          type: string
+        status:
+          description: Result of the status check as 'pass' or 'fail'.
+          title: Status
+          type: string
+        version:
+          description: API version.
+          title: Version
+          type: string
+      required:
+      - status
+      - service_id
+      - version
+      - release_id
+      - python_version
+      title: HealthResponseBody
+      type: object
+    JsonApiErrorObject:
+      additionalProperties: false
+      description: 'JSON:API "error object": https://jsonapi.org/format/#errors'
+      properties:
+        code:
+          title: Code
+          type: string
+        detail:
+          title: Detail
+          type: string
+        id:
+          title: Id
+          type: string
+        source:
+          title: Source
+          type: object
+        status:
+          title: Status
+          type: string
+        title:
+          title: Title
+          type: string
+      required:
+      - code
+      - status
+      - title
+      title: JsonApiErrorObject
+      type: object
+    JsonApiErrorsResponseBody:
+      additionalProperties: false
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/JsonApiErrorObject'
+          title: Errors
+          type: array
+      required:
+      - errors
+      title: JsonApiErrorsResponseBody
+      type: object
+    LoginRequestBody:
+      properties:
+        client_id:
+          description: Unique client identifier.
+          title: Client ID
+          type: string
+        client_secret:
+          description: Private client secret.
+          title: Client Secret
+          type: string
+      required:
+      - client_id
+      - client_secret
+      title: LoginRequestBody
+      type: object
+    MessageAuthor:
+      additionalProperties: false
+      properties:
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      title: MessageAuthor
+      type: object
+    PageItemResponseBody:
+      properties:
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: PageItemResponseBody
+      type: object
+    PageResponseBody:
+      properties:
+        cursor:
+          title: Cursor
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/PageItemResponseBody'
+          title: Items
+          type: array
+      required:
+      - items
+      title: PageResponseBody
+      type: object
+    PingResponseBody:
+      additionalProperties: false
+      example:
+        po: ng
+      properties:
+        po:
+          default: ng
+          enum:
+          - ng
+          title: Po
+          type: string
+      title: PingResponseBody
+      type: object
+    ReadAttachmentResourceResponseBody:
+      additionalProperties: false
+      properties:
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        title:
+          title: Title
+          type: string
+        type:
+          default: attachment
+          enum:
+          - attachment
+          title: Type
+          type: string
+      required:
+      - name
+      - title
+      - id
+      title: ReadAttachmentResourceResponseBody
+      type: object
+    ReadConversationResourceResponseBody:
+      additionalProperties: false
+      properties:
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        thread_id:
+          title: Thread Id
+          type: string
+        thread_name:
+          title: Thread Name
+          type: string
+        thread_type:
+          title: Thread Type
+          type: string
+        title:
+          title: Title
+          type: string
+        type:
+          default: conversation
+          enum:
+          - conversation
+          title: Type
+          type: string
+      required:
+      - id
+      - name
+      - title
+      title: ReadConversationResourceResponseBody
+      type: object
+    ReadFolderResponseBody:
+      additionalProperties: false
+      example:
+        id: foobar-1234
+        name: Foobar
+      properties:
+        id:
+          description: Unique identifier for the Folder.
+          title: ID
+          type: string
+        name:
+          description: Display name of the Folder.
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: ReadFolderResponseBody
+      type: object
+    ReadMessageResourceResponseBody:
+      additionalProperties: false
+      properties:
+        author:
+          $ref: '#/components/schemas/MessageAuthor'
+        date:
+          title: Date
+          type: string
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        parent_message_id:
+          title: Parent Message Id
+          type: string
+        text:
+          title: Text
+          type: string
+        title:
+          title: Title
+          type: string
+        type:
+          default: message
+          enum:
+          - message
+          title: Type
+          type: string
+      required:
+      - id
+      - author
+      - date
+      - name
+      - text
+      - title
+      title: ReadMessageResourceResponseBody
+      type: object
+    ReadTicketResponse:
+      additionalProperties: false
+      example:
+        name: CS0001401
+        onna_parent_id: da72de92fef04c6a9cc5cfe018fa9cd6
+        ref: f352dc9387632300d6b0a7da0acb0b60
+        url: https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60
+      properties:
+        assignee_group:
+          descripton: Asignee group.
+          title: Assignee Group
+          type: string
+        assignees:
+          description: List of users assigned to the ticket.
+          items:
+            type: string
+          title: Assignees
+          type: array
+        author:
+          description: The user that created the ticket.
+          title: Author
+          type: string
+        category:
+          description: Category.
+          title: Category
+          type: string
+        comments:
+          description: List of messages associated to the ticket.
+          items:
+            $ref: '#/components/schemas/TicketMessages'
+          title: Comments
+          type: array
+        creation_date:
+          description: Date when the ticket was created.
+          title: Creation Date
+          type: string
+        description:
+          description: Description.
+          title: Description
+          type: string
+        followers:
+          descripton: List of users follwing the ticket.
+          items:
+            type: string
+          title: Followers
+          type: array
+        name:
+          description: Title.
+          title: Name
+          type: string
+        onna_id:
+          description: The ID for the Onna resource.
+          title: Onna Id
+          type: string
+        onna_parent_id:
+          description: The ID of the parent Folder.
+          title: Parent ID
+          type: string
+        onna_url:
+          description: The URL for the Onna resource.
+          title: Onna Url
+          type: string
+        priority:
+          description: 'Priority: high, medium, low, etc.'
+          title: Priority
+          type: string
+        reactions:
+          descripton: List of reactions.
+          items:
+            type: string
+          title: Reactions
+          type: array
+        ref:
+          description: The Reference Number or ID for the ticket at the origin.
+          title: Reference
+          type: string
+        requester:
+          description: The user that requested the ticket.
+          title: Requester
+          type: string
+        severity:
+          description: 'Severity: high, medium, low, etc.'
+          title: Severity
+          type: string
+        status:
+          description: 'Ticket status: open, closed, archived, etc.'
+          title: Status
+          type: string
+        subcategory:
+          description: Subcategory.
+          title: Subcategory
+          type: string
+        tags:
+          descripton: List of tags associated to the ticket in the origin.
+          items:
+            type: string
+          title: Tags
+          type: array
+        type:
+          description: Type of ticket.
+          title: Type
+          type: string
+        update_date:
+          description: Date when the ticket was last updated.
+          title: Update Date
+          type: string
+        updater:
+          description: The last user to update the ticket.
+          title: Updater
+          type: string
+        url:
+          description: A Unique Resource Locator for the ticket at the origin.
+          title: URL
+          type: string
+      required:
+      - onna_parent_id
+      - ref
+      - url
+      - name
+      - onna_id
+      - onna_url
+      title: ReadTicketResponse
+      type: object
+    ResourceOrigin:
+      additionalProperties: false
+      properties:
+        origin:
+          title: Origin
+          type: string
+        origin_created_by:
+          items:
+            type: object
+          title: Origin Created By
+          type: array
+        origin_date_created:
+          title: Origin Date Created
+          type: string
+        origin_date_deleted:
+          title: Origin Date Deleted
+          type: string
+        origin_date_modified:
+          title: Origin Date Modified
+          type: string
+        origin_display_id:
+          title: Origin Display Id
+          type: string
+        origin_exception:
+          title: Origin Exception
+          type: string
+        origin_folder_path:
+          title: Origin Folder Path
+          type: string
+        origin_has_deletions:
+          title: Origin Has Deletions
+          type: boolean
+        origin_has_editions:
+          title: Origin Has Editions
+          type: boolean
+        origin_has_reactions:
+          title: Origin Has Reactions
+          type: boolean
+        origin_id:
+          title: Origin Id
+          type: string
+        origin_is_archived:
+          title: Origin Is Archived
+          type: boolean
+        origin_is_deleted:
+          title: Origin Is Deleted
+          type: boolean
+        origin_is_legally_held:
+          title: Origin Is Legally Held
+          type: boolean
+        origin_label_ids:
+          items:
+            type: string
+          title: Origin Label Ids
+          type: array
+        origin_md5:
+          title: Origin Md5
+          type: string
+        origin_modified_by:
+          items:
+            type: object
+          title: Origin Modified By
+          type: array
+        origin_other_metadata:
+          title: Origin Other Metadata
+          type: object
+        origin_related_users:
+          items:
+            type: object
+          title: Origin Related Users
+          type: array
+        origin_resource_kind:
+          title: Origin Resource Kind
+          type: string
+        origin_server_modified:
+          title: Origin Server Modified
+          type: string
+        origin_shared:
+          title: Origin Shared
+          type: object
+        origin_state:
+          title: Origin State
+          type: string
+        origin_targeted_users:
+          items:
+            type: object
+          title: Origin Targeted Users
+          type: array
+      title: ResourceOrigin
+      type: object
+    TicketMessages:
+      additionalProperties: false
+      properties:
+        author:
+          title: Author
+          type: string
+        creation_date:
+          title: Creation Date
+          type: string
+        text:
+          title: Text
+          type: string
+      required:
+      - author
+      - creation_date
+      - text
+      title: TicketMessages
+      type: object
+    UpdateAttachmentResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        title:
+          title: Title
+          type: string
+      title: UpdateAttachmentResourceAttributesObject
+      type: object
+    UpdateConversationResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        thread_id:
+          title: Thread Id
+          type: string
+        thread_name:
+          title: Thread Name
+          type: string
+        thread_type:
+          title: Thread Type
+          type: string
+        title:
+          title: Title
+          type: string
+      title: UpdateConversationResourceAttributesObject
+      type: object
+    UpdateFolderRequestBody:
+      additionalProperties: false
+      example:
+        name: Foobar
+      properties:
+        name:
+          description: Display name of the Folder.
+          title: Name
+          type: string
+      required:
+      - name
+      title: UpdateFolderRequestBody
+      type: object
+    UpdateMessageResourceAttributesObject:
+      additionalProperties: false
+      properties:
+        author:
+          $ref: '#/components/schemas/MessageAuthor'
+        date:
+          title: Date
+          type: string
+        id:
+          title: Id
+          type: string
+        origin_metadata:
+          $ref: '#/components/schemas/ResourceOrigin'
+        parent_message_id:
+          title: Parent Message Id
+          type: string
+        text:
+          title: Text
+          type: string
+        title:
+          title: Title
+          type: string
+      title: UpdateMessageResourceAttributesObject
+      type: object
+    UpdateResourceRequestBody:
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateResourceResourceObject'
+      required:
+      - data
+      title: UpdateResourceRequestBody
+      type: object
+    UpdateResourceResourceObject:
+      properties:
+        attributes:
+          anyOf:
+          - $ref: '#/components/schemas/UpdateAttachmentResourceAttributesObject'
+          - $ref: '#/components/schemas/UpdateConversationResourceAttributesObject'
+          - $ref: '#/components/schemas/UpdateMessageResourceAttributesObject'
+          title: Attributes
+        type:
+          enum:
+          - attachment
+          - conversation
+          - message
+          title: Type
+          type: string
+      required:
+      - attributes
+      - type
+      title: UpdateResourceResourceObject
+      type: object
+    UpdateWorkspaceRequestBody:
+      additionalProperties: false
+      example:
+        description: A collection of Acmecorp Inc. support tickets from different
+          apps.
+        name: Acmecorp support tickets
+        tags:
+        - support
+        - zendesk
+        - acemcorp
+        - tickets
+      properties:
+        description:
+          description: Short description of the workspace.
+          title: Description
+          type: string
+        name:
+          description: Display name of the workspace.
+          title: Name
+          type: string
+        tags:
+          description: Labels attached to the workspace for the purpose of identification
+            or to give meta information.
+          items:
+            type: string
+          title: Tags
+          type: array
+      title: UpdateWorkspaceRequestBody
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            type: string
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    WorkspaceResponseBody:
+      example:
+        description: A collection of Acmecorp Inc. support tickets from different
+          apps.
+        id: ee952960803447358301dac3e07335b1
+        name: Acmecorp support tickets
+        tags:
+        - support
+        - zendesk
+        - acemcorp
+        - tickets
+      properties:
+        creation_datetime:
+          default: ''
+          description: The date and time when the workspace was created. The format
+            follows the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard,
+            with up to microsecond precision.
+          title: Creation Datetime
+          type: string
+        description:
+          default: ''
+          description: Short description of the workspace.
+          title: Description
+          type: string
+        id:
+          description: Alphanumeric unique identifier of the workspace.
+          title: Id
+          type: string
+        modification_datetime:
+          default: ''
+          description: The date and time when the workspace was last updated. The
+            format follows the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+            standard, with up to  microsecond precision. Updates include editing metadata,
+            sharing, and tagging the workspace.
+          title: Modification Datetime
+          type: string
+        name:
+          description: Display name of the workspace.
+          title: Name
+          type: string
+        tags:
+          default: []
+          description: Labels attached to the workspace for the purpose of identification
+            or to give meta information.
+          items:
+            type: string
+          title: Tags
+          type: array
+      required:
+      - id
+      - name
+      title: WorkspaceResponseBody
+      type: object
+info:
+  contact:
+    email: support@onna.com
+    name: Onna API Team
+    url: https://help.onna.com
+  description: '# Introduction
+
+
+    ![Onna](https://developers.onna.com/assets/img/how-onna-works-chart.bdae97e4.png
+    "Diagram showing how Onna connects to various applications")
+
+
+    This API lets you ingest multiple data type resources into Onna.
+
+    The API is tailored to customers, partners and developers who are experienced
+    with Onna and REST APIs.
+
+
+    Before using this API, to become familiar with the key concepts and some of the
+    terminology used,
+
+    we recommend to check out our [API basics](https://public-api.harmony.intra.onna.internal/fundamentals/api-basics
+    "Onna API basics overview page") page.
+
+
+    The API description will start with a general overview about the design and technology
+    that has been implemented, followed by reference information about specific endpoints.
+
+
+    Please check our [developer documentation](https://dev.onna.com "Link to https://dev.onna.com")
+    for more background information, guides and tutorials.
+
+
+    ## Requirements
+
+
+    To use this API you must have an active account.
+
+    You can create one by visiting our [signup page](https://register.onna.com/signup
+    "Onna Pay As You Go plan signup page").
+
+
+    ## Data types
+
+
+    ### Tickets
+
+
+    Such as: Zendesk, JIRA, GitHub, ServiceNow.
+
+
+    *Add here a description.*
+
+
+    | Parameter | Explanation | Example |
+
+    |---|---|---|
+
+    | ticket_id | The unique ID that the ticket has in the original system | 12345678
+    |
+
+    | - | - | - |
+
+
+    ### Files
+
+
+    Such as: Zendesk, JIRA, GitHub, ServiceNow.
+
+
+    *Add here a description.*
+
+
+    | Parameter | Explanation | Example |
+
+    |---|---|---|
+
+    | lorem_ipsum | Placeholder text of the printing and typesetting industry | Lorem
+    ipsum dolor sit amen, consenter |
+
+    | - | - | - |
+
+
+    ## Requests
+
+
+    Any tool that is fluent in HTTPS can communicate with the API by
+
+    requesting the correct URI. Requests must be made using the HTTPS protocol.
+
+
+    The interface responds to different methods depending on the action required.
+
+
+    |Method|Usage|
+
+    |---|---|
+
+    |GET|For retrieval of information about your account, workspaces, or folders and
+    resources|
+
+    |DELETE|To destroy a resource, the DELETE method should be used|
+
+    |PUT|To update the information about a resource|
+
+    |PATCH|Some resources support partial modification. In these cases, the PATCH
+    method is available|
+
+    |POST|To create a new object, your request should specify the POST method|
+
+    |HEAD|To retrieve metadata information, you should use the HEAD method to get
+    the headers|
+
+
+    ## Status codes
+
+
+    Along with the HTTP methods that the API responds to, it will also return standard
+    HTTP statuses, including error codes.
+
+
+    In the event of a problem, the status will contain the error code, while the body
+    of the response will usually contain additional information about the problem
+    that was encountered.
+
+
+    In general, if the status returned is in the 200 range, it indicates that the
+    request was fulfilled successfully and that no error was encountered.
+
+
+    Return codes in the 400 range typically indicate that there was an issue with
+    the request that was sent.
+
+    Among other things, this could mean that you did not authenticate correctly, that
+    you are requesting an action that you do not have authorization for, that the
+    object you are requesting does not exist,
+
+    or that your request is malformed.
+
+
+    If you receive a status in the 500 range, this generally indicates a server-side
+    problem.
+
+    This means that we are having an issue on our end and cannot fulfill your request
+    currently.
+
+
+    400 and 500 level error responses will include a JSON object in their body, including
+    the following attributes:
+
+
+    |Name|Type|Description|
+
+    |---|---|---|
+
+    |status|string|The number of the status code for example `401`|
+
+    |message|string|Short description of the status, for example `Unauthorized`|
+
+    |detail|string|Detailed description, for example `Wrong or missing authentication
+    credentials` |
+
+    |help|string|Link to help resources, for example [https://dev.onna.com/fundamentals/response-codes#4xx-codes](https://dev.onna.com/fundamentals/response-codes#4xx-codes)|
+
+
+    ### Example Error Response
+
+
+    ```json
+
+    {
+
+    "status": "401",
+
+    "message": "Unauthorized",
+
+    "detail": "Wrong or missing authentication credentials",
+
+    "help": "https://dev.onna.com/fundamentals/response-codes#4xx-codes"
+
+    }
+
+    ```
+
+
+    Please check our documentation about [Status codes](https://public-api.harmony.intra.onna.internal/fundamentals/response-codes)
+    for more details.
+
+
+    ### Versioning
+
+
+    The Onna API uses versioning to ensure that your client doesn''t break.
+
+    The version is declared in the URL so that you can lock to a specific one by prefix
+    the URL.
+
+
+    For example, you can call `/v1/ping` to use the v1 version of the `/ping` endpoint.
+
+
+    If the API version declared in the URL is not supported by the daemon,
+
+    you will receive a `400 Bad Request` response.
+
+
+    ### Date and time formats
+
+
+    This API supports dates and times in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601
+    "Wikipedia entry for the IS0 8601 standard") format.'
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://onna.com/terms/
+  title: Onna API
+  version: 0.0.1
+openapi: 3.0.2
+paths:
+  /folders:
+    post:
+      description: Create a folder in a workspace.
+      operationId: createFolder
+      parameters:
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderRequestBody'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadFolderResponseBody'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Folder
+      tags:
+      - Folders
+  /folders/{id}:
+    delete:
+      description: "Delete the folder.\n\U0001F4CC This also deletes all resources\
+        \ contained in it!"
+      operationId: deleteFolder
+      parameters:
+      - description: Unique ID of the folder.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the folder.
+          title: ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Delete Folder
+      tags:
+      - Folders
+    get:
+      description: Retrieve information related to a folder.
+      operationId: getFolderInfo
+      parameters:
+      - description: Unique ID of the folder
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the folder
+          title: ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadFolderResponseBody'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Retrieve Folder Info
+      tags:
+      - Folders
+    patch:
+      description: Update the folder. For example, rename it from `my-folder` to `my-new-folder`.
+      operationId: updateFolder
+      parameters:
+      - description: Unique ID of the folder
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the folder
+          title: ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFolderRequestBody'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Update Folder
+      tags:
+      - Folders
+  /health:
+    get:
+      description: Check service status, version and build.
+      operationId: healthResponse
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponseBody'
+          description: Successful Response
+      summary: Health Check
+      tags:
+      - Utils
+  /oauth/token:
+    post:
+      description: Exchange credentials for an access token
+      operationId: clientLoginResponse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientLoginResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Internal Server Error
+      summary: Login
+      tags:
+      - Authentication
+  /oauth/user:
+    get:
+      description: Return information about the currently authenticated user.
+      operationId: currentUser
+      parameters:
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentUser'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Internal Server Error
+      summary: Current User
+      tags:
+      - Authentication
+  /ping:
+    get:
+      description: 'A test resource to make sure everything is working.
+
+        A successful response will return `{"po": "ng"}`.'
+      operationId: pingResponse
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponseBody'
+          description: Successful Response
+      summary: Ping
+      tags:
+      - Utils
+  /resources:
+    post:
+      operationId: create_resource_resources_post
+      parameters:
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateResourceRequestBody'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ReadAttachmentResourceResponseBody'
+                - $ref: '#/components/schemas/ReadConversationResourceResponseBody'
+                - $ref: '#/components/schemas/ReadMessageResourceResponseBody'
+                title: Response Create Resource Resources Post
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Resource
+      tags:
+      - Resources
+  /resources/tickets:
+    post:
+      description: Create a ticket resource.
+      operationId: create_ticket_resources_tickets_post
+      parameters:
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTicketBody'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTicketResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Ticket
+      tags:
+      - Resources
+      - Tickets
+  /resources/tickets/{id}:
+    get:
+      description: Retrieve a ticket resource.
+      operationId: read_ticket_resources_tickets__id__get
+      parameters:
+      - description: Unique ID of the folder.
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the folder.
+          title: ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadTicketResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Read Ticket
+      tags:
+      - Resources
+      - Tickets
+  /resources/{id}:
+    delete:
+      operationId: delete_resource_resources__id__delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Delete Resource
+      tags:
+      - Resources
+    get:
+      operationId: read_resource_resources__id__get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ReadAttachmentResourceResponseBody'
+                - $ref: '#/components/schemas/ReadConversationResourceResponseBody'
+                - $ref: '#/components/schemas/ReadMessageResourceResponseBody'
+                title: Response Read Resource Resources  Id  Get
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Read Resource
+      tags:
+      - Resources
+    patch:
+      operationId: update_resource_resources__id__patch
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourceRequestBody'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Update Resource
+      tags:
+      - Resources
+  /resources/{id}/file:
+    head:
+      description: HEAD a resource's file, for use in the TUS protocol.
+      operationId: head_resource_file_resumable_upload_resources__id__file_head
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Method Not Allowed
+        '412':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Precondition Failed
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Head Resource File Resumable Upload
+      tags:
+      - Resources
+    options:
+      description: OPTION a resource's file. This is primarily used in the TUS protocol.
+      operationId: options_resource_file_resources__id__file_options
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Options Resource File
+      tags:
+      - Resources
+    patch:
+      description: TUS resumable upload PATCH endpoint.
+      operationId: resume_resource_file_upload_resources__id__file_patch
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Method Not Allowed
+        '412':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Precondition Failed
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Resume Resource File Upload
+      tags:
+      - Resources
+    post:
+      description: "TUS creation (https://tus.io/protocols/resumable-upload.html#creation)\
+        \ endpoint.\n\nThe \"created\" file has the same URL as the current endpoint,\
+        \ since a resource can only have a single file.\nGuillotina uses the same\
+        \ pattern:\n    https://guillotina.readthedocs.io/en/latest/training/api.html#uploading-files-with-tus"
+      operationId: create_resource_file_resumable_upload_resources__id__file_post
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Method Not Allowed
+        '412':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Precondition Failed
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Create Resource File Resumable Upload
+      tags:
+      - Resources
+    put:
+      operationId: create_resource_file_single_request_resources__id__file_put
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Create Resource File Single Request
+      tags:
+      - Resources
+  /workspaces:
+    get:
+      description: List workspaces.
+      operationId: listWorkspaces
+      parameters:
+      - in: query
+        name: cursor
+        required: false
+        schema:
+          title: Cursor
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageResponseBody'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: List Workspaces
+      tags:
+      - Workspaces
+    post:
+      description: Create a workspace.
+      operationId: createWorkspace
+      parameters:
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceRequestBody'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponseBody'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Create Workspace
+      tags:
+      - Workspaces
+  /workspaces/{id}:
+    delete:
+      description: Delete a Workspace.
+      operationId: deleteWorkspace
+      parameters:
+      - description: Unique ID of the workspace.
+        example: myworkspace-ZPM9Jf4zQ
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the workspace.
+          title: Workspace ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Delete Workspace
+      tags:
+      - Workspaces
+    get:
+      description: Retrieve information related to a workspace.
+      operationId: retrieveWorkspaceInfo
+      parameters:
+      - description: Unique ID of the workspace.
+        example: myworkspace-ZPM9Jf4zQ
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the workspace.
+          title: Workspace ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponseBody'
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Retrieve Workspace Info
+      tags:
+      - Workspaces
+    patch:
+      description: Update the workspace. For example, rename it from `my-workspace`
+        to `my-new-workspace`.
+      operationId: updateWorkspace
+      parameters:
+      - description: Unique ID of the workspace.
+        example: myworkspace-ZPM9Jf4zQ
+        in: path
+        name: id
+        required: true
+        schema:
+          description: Unique ID of the workspace.
+          title: Workspace ID
+          type: string
+      - description: 'The Authorization header contains your access token as a [Bearer
+          Token](https://oauth.net/2/bearer-tokens/):
+
+
+          ```bash
+
+          Authorization: Bearer ACCESS_TOKEN
+
+          ```
+
+
+          You can obtain an access token through an OAuth flow such as the client
+          credentials flow. For more information on obtaining an access token, see
+          ["Obtaining an access token"](http://example.com).'
+        in: header
+        name: authorization
+        required: false
+        schema:
+          description: 'The Authorization header contains your access token as a [Bearer
+            Token](https://oauth.net/2/bearer-tokens/):
+
+
+            ```bash
+
+            Authorization: Bearer ACCESS_TOKEN
+
+            ```
+
+
+            You can obtain an access token through an OAuth flow such as the client
+            credentials flow. For more information on obtaining an access token, see
+            ["Obtaining an access token"](http://example.com).'
+          title: Authorization
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceRequestBody'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonApiErrorsResponseBody'
+          description: Unprocessable Entity
+      summary: Update Workspace
+      tags:
+      - Workspaces
+servers:
+- description: Production Server
+  url: http://localhost:8880
+tags:
+- description: 'Our API uses OAuth 2''s Client Credentials Grant to authenticate your
+    requests.
+
+    This grant type is especially suited for machine-to-machine (M2M) applications,
+
+    such as the applications you build on top of the Onna platform.
+
+
+    For more information please check our detailed [authentication docs](https://public-api.harmony.intra.onna.internal/fundamentals/authentication).'
+  name: Authentication
+- description: 'Workspaces are locations where you can collect data coming from different
+    sources, organize it,
+
+    and collaborate with other members of your team.
+
+
+    You can share workspaces with collaborators with various permission levels and
+    roles.
+
+    Permission levels are dependent on the type of expected collaboration.
+
+    You can also search across an entire workspace and export the results of your
+    searches or entire data collections.
+
+
+    This collection includes all the endpoints that enable you to work and collaborate
+    inside workspaces.'
+  name: Workspaces
+- description: 'Folders are containers for your files or other folders. A place where
+    you can group your resources together, just like in any desktop operating system.
+
+
+    This collection includes all the endpoints that enable you to handle folders,
+    such as creating, retrieving, or deleting them.'
+  name: Folders
+- description: 'Resources are representations of data and can assume various formats,
+    depending on the application they comes from or their file type.
+
+
+    For example, a resource can be a PDF file, a Gmail email message, or a Twitter
+    post.
+
+
+    For more information on what resource you can handle in Onna, check the [list
+    of supported resource types](#resource-types ''list of supported resource types'').
+
+
+    This collection includes all the endpoints that enable you to manage resources,
+    such as uploading, retrieving, or downloading them.'
+  name: Resources
+- description: API Utils, such as the `ping` endpoint.
+  name: Utils
