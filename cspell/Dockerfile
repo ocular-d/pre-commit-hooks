@@ -18,5 +18,5 @@ COPY cspell.json cspell.json
 
 WORKDIR /app/spec
 #ENTRYPOINT [ "bash" ]
-#ENTRYPOINT [ "cspell" ]
-CMD ["cspell"]
+ENTRYPOINT [ "cspell" ]
+#CMD ["cspell"]
