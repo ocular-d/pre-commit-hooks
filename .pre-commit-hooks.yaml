@@ -28,8 +28,8 @@
   entry: testthedocs/markdownlint:0.31.1
   types: [markdown]
 - id: cspell-openapi
-  name: cspell-openapi
-  description: "Cspell OpenAPI"
+  name: Spell check OpenAPI
+  description: "Cspell spell check OpenAPI"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
   entry: testthedocs/cspell:6.2.3-1
