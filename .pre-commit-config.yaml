@@ -35,3 +35,13 @@ repos:
         files: \.md$
         #types: ["markdown"]
         entry: testthedocs/markdownlint:0.31.1
+
+-   repo: local
+    hooks:
+      - id: cspell-openapi
+        name: cspell-openapi
+        description: cspell-openapi
+        language: docker_image
+        files: openapi.yaml$
+        #types: ["files"]
+        entry: testthedocs/testthedocs/cpsell:6.2.3

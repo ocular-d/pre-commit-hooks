@@ -34,3 +34,4 @@
   language: docker_image
   entry: testthedocs/cpsell:6.2.3
   files: openapi.*\.yaml$
+  types: [file]
