@@ -15,4 +15,4 @@ USER node
 WORKDIR /app
 
 #ENTRYPOINT [ "bash" ]
-ENTRYPOINT [ "spectral" ]
+ENTRYPOINT [ "spectral", "lint" ]
