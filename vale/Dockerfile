@@ -1,5 +1,5 @@
 FROM alpine:3.16
-ENV VALE_VERSION=2.20.1
+ENV VALE_VERSION=2.20.0
 
 LABEL description="Vale linter"
 LABEL maintainer="sven@testthedocs.org"
@@ -20,12 +20,11 @@ RUN apk add --no-cache py3-docutils bash && \
 #    chown vale:vale /src
 
 
-COPY vale.ini src/.vale.ini
+COPY vale.ini /.vale.ini
 COPY styles /styles
-WORKDIR /src
-COPY --chown=vale:vale vale.ini /src/.vale.ini
+#WORKDIR /src/docs
+#COPY --chown=vale:vale vale.ini /src/.vale.ini
 #COPY --chown=vale:vale styles /src/styles
 USER vale
-ENTRYPOINT [ "bash" ]
-#ENTRYPOINT [ "/usr/local/bin/vale" ]
+ENTRYPOINT [ "/usr/local/bin/vale" ]
 #CMD [ "bash", "ls" ]

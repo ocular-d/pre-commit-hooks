@@ -18,7 +18,7 @@
   description: "Vale prose linter"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: testthedocs/vale:2.20.1
+  entry: testthedocs/vale:2.15.5
   types: [markdown]
 - id: markdown-lint
   name: markdown-lint
