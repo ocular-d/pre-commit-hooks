@@ -3,14 +3,14 @@
   description: "Black: The uncompromising Python code formatter"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: --entrypoint black testthedocs/black:22.1.0
+  entry: --entrypoint black testthedocs/black:22.12.0
   types: [python]
 - id: python-isort
   name: isort (Python)
   description: "Sort your imports, so you don't have to"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: --entrypoint isort testthedocs/isort:5.7.0
+  entry: --entrypoint isort testthedocs/isort:5.11.1
   args: ["--profile", "black", "--filter-files"]
   types: [python]
 - id: vale
@@ -18,7 +18,7 @@
   description: "Vale prose linter"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: testthedocs/vale:2.15.5
+  entry: testthedocs/vale:2.21.3
   types: [markdown]
 - id: markdown-lint
   name: markdown-lint
@@ -32,7 +32,7 @@
   description: "Cspell spell check OpenAPI"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: testthedocs/cspell:6.2.3-1
+  entry: testthedocs/cspell:6.17.0
   files: openapi.*\.yaml$
   types: [file]
 - id: spectral
@@ -40,6 +40,6 @@
   description: "Running spectral against openapi.yaml"
   minimum_pre_commit_version: '2.17.0'
   language: docker_image
-  entry: testthedocs/spectral:6.4.1
+  entry: testthedocs/spectral:6.6.0
   files: openapi.*\.yaml$
   types: [file]

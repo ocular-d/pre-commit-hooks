@@ -1,5 +1,5 @@
-FROM python:3.9-alpine
-ENV version=5.7.0
+FROM python:3.11-alpine
+ENV version=5.11.1
 
 LABEL description="Black Python code formater"
 LABEL maintainer="sven@testthedocs.org"
