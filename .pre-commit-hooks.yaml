@@ -43,3 +43,10 @@
   entry: testthedocs/spectral:6.6.0
   files: openapi.*\.yaml$
   types: [file]
+- id: alex
+  name: alex-lint
+  description: "Catch insensitive, inconsiderate writing"
+  minimum_pre_commit_version: '2.17.0'
+  language: docker_image
+  entry: testthedocs/alex:11.0.0
+  types: [markdown]

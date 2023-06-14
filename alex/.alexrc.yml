@@ -1,0 +1,10 @@
+ allow:
+  - just
+  - executed
+  - failed
+  - simple
+  - postman-postwoman
+  - remain
+  - colors
+  - husky
+  - host-hostess

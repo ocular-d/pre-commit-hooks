@@ -55,3 +55,13 @@ repos:
         files: openapi.*\.yaml$
         types: [file]
         entry: testthedocs/spectral:6.4.1
+
+-   repo: local
+    hooks:
+      - id: alex
+        name: Alex
+        description: Catch insensitive, inconsiderate writing
+        language: docker_image
+        files: \.md$
+        #types: [file]
+        entry: testthedocs/alex:11.0.0
